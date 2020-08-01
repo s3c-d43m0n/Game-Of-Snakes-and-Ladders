@@ -45,5 +45,8 @@ public interface Game {
 	public void throwCrookedDice() throws GameNotRuningException;
 	
 	// to get Position of player
-	public int getPositionOfPlayer() throws PlayerNotFoundException;
+	public int getPositionOfPlayer(String name) throws PlayerNotFoundException;
+	
+	// to check if game is over
+	public boolean isGameOver();
 }

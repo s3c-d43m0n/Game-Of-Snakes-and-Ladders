@@ -4,7 +4,7 @@ public class GameNotRuningException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 
-	GameNotRuningException(){
+	public GameNotRuningException(){
 		super("Game is not in running state");
 	}
 }
