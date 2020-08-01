@@ -63,7 +63,10 @@ public class GameImpl implements Game {
 	@Override
 	public void addSnake(int start, int end) throws GameAlreadyRunningException, SnakeOrLadderException {
 		if(isGameRunning) throw new GameAlreadyRunningException();
-		if(start>end) {
+		if(start>=gameBoardSize) {
+			throw new SnakeOrLadderException("For Snake, start position("+start+") should be less than board size("+gameBoardSize+")");
+		}
+		else if(start>end) {
 			if(snakeLadder.containsKey(start)) {
 				int value = snakeLadder.get(start);
 				throw new SnakeOrLadderException("At position("+start+") "+((start-value)>0 ? "snake":"ladder")+" already exist.");
@@ -94,7 +97,10 @@ public class GameImpl implements Game {
 	@Override
 	public void addLadder(int start, int end) throws GameAlreadyRunningException, SnakeOrLadderException {
 		if(isGameRunning) throw new GameAlreadyRunningException();
-		if(start>=end) {
+		if(end>=gameBoardSize) {
+			throw new SnakeOrLadderException("For Ladder, end position("+end+") should be less than board size("+gameBoardSize+")");
+		}
+		else if(start>=end) {
 			throw new SnakeOrLadderException("For Ladder, end position("+end+") should be greater than start position("+start+")");
 		}
 		else {
@@ -124,9 +130,11 @@ public class GameImpl implements Game {
 	@Override
 	public void start() throws GameAlreadyRunningException {
 		if(isGameRunning) throw new GameAlreadyRunningException();
-		System.out.println("Starting the GAME");
-		isGameRunning=true;
-		isGameOver=false;
+		if(playerList.size()>0) {
+			System.out.println("Starting the GAME");
+			isGameRunning=true;
+			isGameOver=false;
+		}
 	}
 
 	@Override
@@ -155,15 +163,15 @@ public class GameImpl implements Game {
 	@Override
 	public void throwNormalDice() throws GameNotRuningException {
 		if(!isGameRunning) throw new GameNotRuningException();
+		System.out.println(playerList.get(currentPlayer)+"\t-> Throwing Normal Dice");
 		moveCurrentPlayer(normalDice.getNextMove());
-		nextPlayer();
 	}
 
 	@Override
 	public void throwCrookedDice() throws GameNotRuningException {
 		if(!isGameRunning) throw new GameNotRuningException();
-		moveCurrentPlayer(normalDice.getNextMove());
-		nextPlayer();
+		System.out.println(playerList.get(currentPlayer)+"\t-> Throwing Crooked Dice");
+		moveCurrentPlayer(crookedDice.getNextMove());
 	}
 
 	@Override
@@ -185,7 +193,7 @@ public class GameImpl implements Game {
 		int nextPosition = moves+playerPosition.get(player);
 		if(nextPosition<= gameBoardSize ) {
 			playerPosition.put(player,nextPosition);
-			System.out.println(player+"\t-> Moved to "+nextPosition+" from "+(nextPosition-moves));
+			System.out.println(player+"\t-> Moved to "+nextPosition+" from "+(nextPosition-moves)+" with moves "+moves);
 			checkForSnakeOrLadder();
 		}
 		else {
@@ -196,6 +204,12 @@ public class GameImpl implements Game {
 		if(gameBoardSize == playerPosition.get(playerList.get(currentPlayer))){
 			System.out.println(player+"\t-> won the game.");
 			stop();
+		}
+		if(moves==6) {
+			System.out.println(player+"\t-> got extra chance, got "+moves);
+		}
+		else {
+			nextPlayer();
 		}
 	}
 
@@ -219,5 +233,10 @@ public class GameImpl implements Game {
 	@Override
 	public boolean isGameOver() {
 		return isGameOver;
+	}
+	
+	@Override
+	public boolean isGameRunning() {
+		return isGameRunning;
 	}
 }

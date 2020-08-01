@@ -49,4 +49,7 @@ public interface Game {
 	
 	// to check if game is over
 	public boolean isGameOver();
+	
+	// to check if game is running
+	public boolean isGameRunning();
 }
