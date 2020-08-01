@@ -68,6 +68,9 @@ public class GameImpl implements Game {
 		if(start>=gameBoardSize) {
 			throw new SnakeOrLadderException("For Snake, start position("+start+") should be less than board size("+gameBoardSize+")");
 		}
+		else if(end<1) {
+			throw new SnakeOrLadderException("For Snake, end position("+end+") should be greater than 0");
+		}
 		else if(start>end) {
 			if(snakeLadder.containsKey(start)) {
 				int value = snakeLadder.get(start);
@@ -101,6 +104,9 @@ public class GameImpl implements Game {
 		if(isGameRunning) throw new GameAlreadyRunningException();
 		if(end>=gameBoardSize) {
 			throw new SnakeOrLadderException("For Ladder, end position("+end+") should be less than board size("+gameBoardSize+")");
+		}
+		else if(start<1) {
+			throw new SnakeOrLadderException("For Ladder, start position("+start+") should be greater than 0");
 		}
 		else if(start>=end) {
 			throw new SnakeOrLadderException("For Ladder, end position("+end+") should be greater than start position("+start+")");
