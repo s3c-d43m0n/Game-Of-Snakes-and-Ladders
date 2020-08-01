@@ -25,9 +25,11 @@ To develop this Game for Snakes and Ladders in JAVA, I have created the project 
 > Note: If you create loop using snakes/ladders, I have added check for loop detection also.
 
 #### Usage Guide
-I have created driver class having main method for usage [SnakesLaddersGame/src/com/ritvik/game/driver/PlayGame.java][LinkForDriver]
+I have created driver class having main method. Please refer for usage [SnakesLaddersGame/src/com/ritvik/game/driver/PlayGame.java][LinkForDriver]
 
 You can also implement the Game interface [SnakesLaddersGame/src/com/ritvik/game/layout/Game.java][LinkForGame]
+
+For Test Cases, you can refer [SnakesLaddersGame/src/com/ritvik/game/test/TestCases.java][LinkForTest]
 
 #### Upcoming Features!
   - I will be creating GUI App using this.
@@ -35,3 +37,4 @@ You can also implement the Game interface [SnakesLaddersGame/src/com/ritvik/game
 
    [LinkForDriver]: <https://github.com/s3c-d43m0n/Game-Of-Snakes-and-Ladders/blob/master/SnakesLaddersGame/src/com/ritvik/game/driver/PlayGame.java>
    [LinkForGame]: <https://github.com/s3c-d43m0n/Game-Of-Snakes-and-Ladders/blob/master/SnakesLaddersGame/src/com/ritvik/game/layout/Game.java>
+   [LinkForTest]: <https://github.com/s3c-d43m0n/Game-Of-Snakes-and-Ladders/blob/master/SnakesLaddersGame/src/com/ritvik/game/test/TestCases.java>
