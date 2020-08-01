@@ -2,6 +2,8 @@ package com.ritvik.game.impl;
 
 import java.util.*;
 
+import javax.management.RuntimeErrorException;
+
 import com.ritvik.game.exceptions.*;
 import com.ritvik.game.layout.*;
 
@@ -194,7 +196,7 @@ public class GameImpl implements Game {
 		if(nextPosition<= gameBoardSize ) {
 			playerPosition.put(player,nextPosition);
 			System.out.println(player+"\t-> Moved to "+nextPosition+" from "+(nextPosition-moves)+" with moves "+moves);
-			checkForSnakeOrLadder();
+			checkForSnakeOrLadder(nextPosition);
 		}
 		else {
 			System.out.println(player+"\t-> Unable to move ahead from "+(nextPosition-moves)+" with moves "+moves);
@@ -213,7 +215,7 @@ public class GameImpl implements Game {
 		}
 	}
 
-	private void checkForSnakeOrLadder() {
+	private void checkForSnakeOrLadder(int loopDetection) {
 		String player = playerList.get(currentPlayer);
 		int position = playerPosition.get(player);
 		int isSnakeOrLadder = snakeLadder.getOrDefault(position, -1);
@@ -227,6 +229,10 @@ public class GameImpl implements Game {
 			}
 			position = playerPosition.get(player);
 			isSnakeOrLadder = snakeLadder.getOrDefault(position, -1);
+			if(position==loopDetection) {
+				System.out.println(player+"\t-> got Stuck in loop, found at position "+loopDetection);
+				break;
+			}
 		}		
 	}
 

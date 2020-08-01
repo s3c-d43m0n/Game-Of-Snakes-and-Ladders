@@ -11,16 +11,22 @@ public class PlayGame {
 		try {
 			Game game = new GameImpl(100);
 			
-			game.addPlayer("Ritvik");
+			game.addPlayer("User1");
+			game.addPlayer("User2");
+			game.addPlayer("User3");
 
 			game.addSnake(99, 10);
 			game.addSnake(96, 25);
 			game.addSnake(80, 20);
-			game.addSnake(32, 5);
+			game.addSnake(32, 5); // loop
+			game.addSnake(75, 32); //loop
 			game.addSnake(56, 24);
 			game.addSnake(93, 15);
+			game.addSnake(95, 15);
 			
 			game.addLadder(7, 77);
+			game.addLadder(5, 65); // loop
+			game.addLadder(65, 75); //loop
 			game.addLadder(9, 21);
 			game.addLadder(55, 95);
 			game.addLadder(34, 78);
