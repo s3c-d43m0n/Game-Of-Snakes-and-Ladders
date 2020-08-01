@@ -18,12 +18,13 @@ public class PlayGame {
 			game.addSnake(99, 10);
 			game.addSnake(96, 25);
 			game.addSnake(80, 20);
+			game.addSnake(85, 2);
 			game.addSnake(56, 24);
 			game.addSnake(93, 15);
 			game.addSnake(95, 15);
 			
 			game.addLadder(7, 77);
-			game.addLadder(9, 21);
+			game.addLadder(21, 91);
 			game.addLadder(55, 95);
 			game.addLadder(34, 78);
 			
